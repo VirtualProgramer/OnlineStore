@@ -2,6 +2,27 @@
 
 <script runat="server">
 
+    protected void Button1_Click(object sender, EventArgs e) {
+        //Session.Abandon();
+
+        if (Session["ShoppingCart"] == null) {
+            Session["ShoppingCart"] = new Dictionary<int, int>();
+        }
+
+        Dictionary<int, int> shoppingCart = Session["ShoppingCart"] as Dictionary<int, int>;
+
+        int id = int.Parse(Request.QueryString["id"]);
+
+        TextBox tx1 = FormView1.FindControl("TextBox1") as TextBox;
+
+        int amount = int.Parse(tx1.Text);
+
+        shoppingCart.Add(id, amount);
+
+        Response.Redirect($"~/ShoppingCart.aspx?user={Session["UserName"]}");
+        // href='<%# Eval("ID" , "/?id={0}")%>' 
+    }
+
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -53,7 +74,8 @@
                                     <div>
                                         <div class="quantity-container d-flex align-items-center mt-15">
                                             Quantity:
-                                        <input type="text" class="quantity-amount ml-15" value="1" />
+                                            <asp:TextBox ID="TextBox1" TextMode="Number" runat="server"></asp:TextBox>
+                                            <%--<input type="text" class="quantity-amount ml-15" value="1" />--%>
                                             <div class="arrow-btn d-inline-flex flex-column">
                                                 <button class="increase arrow" type="button" title="Increase Quantity"><span class="lnr lnr-chevron-up"></span></button>
                                                 <button class="decrease arrow" type="button" title="Decrease Quantity"><span class="lnr lnr-chevron-down"></span></button>
@@ -61,7 +83,10 @@
 
                                         </div>
                                         <div class="d-flex mt-20">
-                                            <a href="#" class="view-btn color-2"><span>Add to Cart</span></a>
+                                            <%--<a class="view-btn color-2" href='<%# Eval("ID" , "/ProductDetail.aspx?id={0}")%>'>Add to Cart</a>--%>
+                                            <asp:Button class="view-btn color-2" OnClick="Button1_Click" ID="Button1" runat="server" Text="Add to Cart"/>
+                                            <%--<asp:LinkButton ID="LinkButton1" class="view-btn color-2" runat="server" OnClick="LinkButton1_Click">Add to Cart</asp:LinkButton>--%>
+                                            <%--<a href="#" class="view-btn color-2"><span>Add to Cart</span></a>--%>
                                             <a href="#" class="like-btn"><span class="lnr lnr-layers"></span></a>
                                             <a href="#" class="like-btn"><span class="lnr lnr-heart"></span></a>
                                         </div>

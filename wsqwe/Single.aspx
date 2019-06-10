@@ -3,7 +3,6 @@
 <script runat="server">
 
     protected void Button1_Click(object sender, EventArgs e) {
-        //Session.Abandon();
 
         if (Session["ShoppingCart"] == null) {
             Session["ShoppingCart"] = new Dictionary<int, int>();
@@ -17,10 +16,13 @@
 
         int amount = int.Parse(tx1.Text);
 
-        shoppingCart.Add(id, amount);
+        if (shoppingCart.Keys.Contains(id)) {
+            shoppingCart[id] = amount;
+        } else {
+            shoppingCart.Add(id, amount);
+        }
 
         Response.Redirect($"~/ShoppingCart.aspx?user={Session["UserName"]}");
-        // href='<%# Eval("ID" , "/?id={0}")%>' 
     }
 
 </script>
@@ -84,7 +86,7 @@
                                         </div>
                                         <div class="d-flex mt-20">
                                             <%--<a class="view-btn color-2" href='<%# Eval("ID" , "/ProductDetail.aspx?id={0}")%>'>Add to Cart</a>--%>
-                                            <asp:Button class="view-btn color-2" OnClick="Button1_Click" ID="Button1" runat="server" Text="Add to Cart"/>
+                                            <asp:Button class="view-btn color-2" OnClick="Button1_Click" ID="Button1" runat="server" Text="Add to Cart" />
                                             <%--<asp:LinkButton ID="LinkButton1" class="view-btn color-2" runat="server" OnClick="LinkButton1_Click">Add to Cart</asp:LinkButton>--%>
                                             <%--<a href="#" class="view-btn color-2"><span>Add to Cart</span></a>--%>
                                             <a href="#" class="like-btn"><span class="lnr lnr-layers"></span></a>

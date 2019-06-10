@@ -3,8 +3,7 @@
 <script runat="server">
 
     protected void Button1_Click(object sender, EventArgs e) {
-        //Session.Abandon();
-
+        
         if (Session["ShoppingCart"] == null) {
             Session["ShoppingCart"] = new Dictionary<int, int>();
         }
@@ -19,8 +18,7 @@
 
         shoppingCart.Add(id, amount);
 
-        Response.Redirect($"~/ShoppingCart.aspx?user={Session["UserName"]}");
-        // href='<%# Eval("ID" , "/?id={0}")%>' 
+        Response.Redirect($"~/ShoppingCart.aspx");
     }
 
 </script>

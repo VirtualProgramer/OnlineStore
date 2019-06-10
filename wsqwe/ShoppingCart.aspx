@@ -34,19 +34,22 @@
                 </div>
             </div>
         </div>
+
+        <% =GetShoppingCartName() %>
+
         <form runat="server">
-            <asp:Repeater ID="Repeater1" runat="server" DataSourceID="ObjectDataSource1">
+            <asp:repeater id="Repeater1" runat="server" datasourceid="ObjectDataSource1">
                 <HeaderTemplate>
                     <div class="cart-single-item">
                         <div class="row align-items-center">
                 </HeaderTemplate>
                 <ItemTemplate>
-<%--                    <div class="col-md-6 col-12">
-                        <div class="img-fluid"
-                            style="background-image: url('/img/<%# Eval("ImageFileName") %>'); background-repeat: no-repeat; background-size: cover; width: 152px; height: 106px">
-                            <h6><%# Eval("Name") %></h6>
-                        </div>
-                    </div>--%>
+                <%--<div class="col-md-6 col-12">
+                    <div class="img-fluid"
+                        style="background-image: url('/img/<%# Eval("ImageFileName") %>'); background-repeat: no-repeat; background-size: cover; width: 152px; height: 106px">
+                        <h6><%# Eval("Name") %></h6>
+                    </div>
+                </div>--%>
                     <div class="col-md-6 col-12">
                             <div class="product-item d-flex align-items-center">
                                 <img src='/img/<%# Eval("ImageFileName") %>' class="img-fluid" alt="">
@@ -72,71 +75,71 @@
                     </div>
                 </ItemTemplate>
                 <FooterTemplate>
-                    </div>
-                </div>
+    </div>
+    </div>
                 </FooterTemplate>
             </asp:Repeater>
         </form>
-        <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="GetProduct" TypeName="ProductHandler">
+        <asp:objectdatasource runat="server" id="ObjectDataSource1" selectmethod="GetProduct" typename="ProductHandler">
             <SelectParameters>
                 <asp:QueryStringParameter Name="id" QueryStringField="id" Type="Int32" />
             </SelectParameters>
-        </asp:ObjectDataSource>
-        <div class="cupon-area d-flex align-items-center justify-content-between flex-wrap">
-            <a href="#" class="view-btn color-2"><span>Update Cart</span></a>
-            <div class="cuppon-wrap d-flex align-items-center flex-wrap">
-                <div class="cupon-code">
-                    <input type="text">
-                    <button class="view-btn color-2"><span>Apply</span></button>
-                </div>
-                <a href="#" class="view-btn color-2 have-btn"><span>Have a Coupon?</span></a>
+        </asp:objectdatasource>
+    <div class="cupon-area d-flex align-items-center justify-content-between flex-wrap">
+        <a href="#" class="view-btn color-2"><span>Update Cart</span></a>
+        <div class="cuppon-wrap d-flex align-items-center flex-wrap">
+            <div class="cupon-code">
+                <input type="text">
+                <button class="view-btn color-2"><span>Apply</span></button>
             </div>
+            <a href="#" class="view-btn color-2 have-btn"><span>Have a Coupon?</span></a>
         </div>
-        <div class="subtotal-area d-flex align-items-center justify-content-end">
-            <div class="title text-uppercase">Subtotal</div>
-            <div class="subtotal">$2160.00</div>
-        </div>
-        <div class="shipping-area d-flex justify-content-end">
-            <div class="tile text-uppercase">Shipping</div>
-            <form action="#" class="d-inline-flex flex-column align-items-end">
-                <ul class="d-flex flex-column align-items-end">
-                    <li class="filter-list">
-                        <label for="flat-rate">Flat Rate:<span>$5.00</span></label>
-                        <input class="pixel-radio" type="radio" id="flat-rate" name="brand">
-                    </li>
-                    <li class="filter-list">
-                        <label for="free-shipping">Free Shipping</label>
-                        <input class="pixel-radio" type="radio" id="free-shipping" name="brand">
-                    </li>
-                    <li class="filter-list">
-                        <label for="flat-rate-2">Flat Rate:<span>$10.00</span></label>
-                        <input class="pixel-radio" type="radio" id="flat-rate-2" name="brand">
-                    </li>
-                    <li class="filter-list">
-                        <label for="local-delivery">Local Delivery:<span>$2.00</span></label>
-                        <input class="pixel-radio" type="radio" id="local-delivery" name="brand">
-                    </li>
-                    <li class="calculate">Calculate Shipping</li>
-                </ul>
-                <div class="sorting">
-                    <select>
-                        <option value="1">Bangladesh</option>
-                        <option value="1">India</option>
-                        <option value="1">Srilanka</option>
-                    </select>
-                </div>
-                <div class="sorting mt-20">
-                    <select>
-                        <option value="1">Select a State</option>
-                        <option value="1">Select a State</option>
-                        <option value="1">Select a State</option>
-                    </select>
-                </div>
-                <input type="text" placeholder="Postcode/Zipcode" onfocus="this.placeholder=''" onblur="this.placeholder = 'Postcode/Zipcode'" required class="common-input mt-10">
-                <button class="view-btn color-2 mt-10"><span>Update Details</span></button>
-            </form>
+    </div>
+    <div class="subtotal-area d-flex align-items-center justify-content-end">
+        <div class="title text-uppercase">Subtotal</div>
+        <div class="subtotal">$2160.00</div>
+    </div>
+    <div class="shipping-area d-flex justify-content-end">
+        <div class="tile text-uppercase">Shipping</div>
+        <form action="#" class="d-inline-flex flex-column align-items-end">
+            <ul class="d-flex flex-column align-items-end">
+                <li class="filter-list">
+                    <label for="flat-rate">Flat Rate:<span>$5.00</span></label>
+                    <input class="pixel-radio" type="radio" id="flat-rate" name="brand">
+                </li>
+                <li class="filter-list">
+                    <label for="free-shipping">Free Shipping</label>
+                    <input class="pixel-radio" type="radio" id="free-shipping" name="brand">
+                </li>
+                <li class="filter-list">
+                    <label for="flat-rate-2">Flat Rate:<span>$10.00</span></label>
+                    <input class="pixel-radio" type="radio" id="flat-rate-2" name="brand">
+                </li>
+                <li class="filter-list">
+                    <label for="local-delivery">Local Delivery:<span>$2.00</span></label>
+                    <input class="pixel-radio" type="radio" id="local-delivery" name="brand">
+                </li>
+                <li class="calculate">Calculate Shipping</li>
+            </ul>
+            <div class="sorting">
+                <select>
+                    <option value="1">Bangladesh</option>
+                    <option value="1">India</option>
+                    <option value="1">Srilanka</option>
+                </select>
+            </div>
+            <div class="sorting mt-20">
+                <select>
+                    <option value="1">Select a State</option>
+                    <option value="1">Select a State</option>
+                    <option value="1">Select a State</option>
+                </select>
+            </div>
+            <input type="text" placeholder="Postcode/Zipcode" onfocus="this.placeholder=''" onblur="this.placeholder = 'Postcode/Zipcode'" required class="common-input mt-10">
+            <button class="view-btn color-2 mt-10"><span>Update Details</span></button>
+        </form>
 
-        </div>
+    </div>
     </div>
     <!-- End Cart Area -->
 </asp:Content>

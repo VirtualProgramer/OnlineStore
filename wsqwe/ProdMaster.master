@@ -70,7 +70,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">產品管理</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">產品一覽表</a>
+                                <a class="dropdown-item" href="ProductView.aspx">產品一覽表</a>
                                 <a class="dropdown-item" href="CreProduct.aspx">建立產品</a>
                             </div>
                         </li>

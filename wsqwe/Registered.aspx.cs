@@ -14,6 +14,8 @@ public partial class Registered : System.Web.UI.Page
 
     protected void btnlogin_Click(object sender, EventArgs e)
     {
+        string str = "恭喜! 註冊成功，下次登入時請用這組帳號密碼登入。";
+
         MemberHandler mh = new MemberHandler();
 
         if (mh.CompareUserName(txtUserName.Text))
@@ -27,8 +29,8 @@ public partial class Registered : System.Web.UI.Page
         }
         else
         {
-            mh.strMsg("恭喜! 註冊成功，下次登入時請用這組帳號密碼登入。");
-            mh.AddToMembers(txtUserName.Text,txtPassWord.Text,txtEmail.Text,int.Parse(txtPhone.Text),txtGender.Text);
+            mh.strMsg(str);
+            mh.AddToMembers(txtUserName.Text,txtPassWord.Text,txtEmail.Text,txtPhone.Text,int.Parse(RBL1.SelectedValue));
             Response.Redirect("~/Home.aspx");
         }
     }

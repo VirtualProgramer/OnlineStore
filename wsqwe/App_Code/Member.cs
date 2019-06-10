@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.IO;
 using System.Data;
-using System.Web.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Web.Configuration;
 
 
 
@@ -15,8 +13,8 @@ public class Member
     public string UserName { get; set; }
     public string PassWord { get; set; }
     public string Email { get; set; }
-    public int    Phone { get; set; }
-    public string    Gender { get; set; }
+    public string Phone { get; set; }
+    public string GenderID { get; set; }
 }
 
 
@@ -37,7 +35,8 @@ public class MemberHandler
 
     public List<Member> GetCasePath()
     {
-        sql = "SELECT * FROM Members";
+        //sql = "SELECT * FROM Members";
+        sql = "select m.id,username,password,email,phone,g.gendername as genderid from members m, genders g where m.genderid = g.genderid";
         SqlDataAdapter sda = new SqlDataAdapter(sql , this.SourcesPath);
 
         DataTable dt = new DataTable();
@@ -51,8 +50,8 @@ public class MemberHandler
                         UserName = row["UserName"].ToString(),
                         PassWord = row["PassWord"].ToString(),
                         Email = row["Email"].ToString(),
-                        Phone = (int)row["Phone"],
-                        Gender = row["Gender"].ToString()
+                        Phone = row["Phone"].ToString(),
+                        GenderID = row["GenderID"].ToString()
                     };
 
         return query.ToList();
@@ -60,7 +59,7 @@ public class MemberHandler
 
     public Member GetAMembers(int id)
     {
-        SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM Members WHERE ID=@id", this.SourcesPath);
+        SqlDataAdapter sda = new SqlDataAdapter("select m.id,username,password,email,phone,g.gendername as genderid from members m, genders g where m.genderid = g.genderid and id=@id", this.SourcesPath);
 
         DataTable dt = new DataTable();
 
@@ -78,8 +77,8 @@ public class MemberHandler
             UserName = row["UserName"].ToString(),
             PassWord = row["PassWord"].ToString(),
             Email = row["Email"].ToString(),
-            Phone = Convert.ToInt32(row["Phone"]),
-            Gender = row["Gender"].ToString()
+            Phone = row["Phone"].ToString(),
+            GenderID = row["GenderID"].ToString()
         };
 
         return m;
@@ -95,7 +94,7 @@ public class MemberHandler
 
     public void UpdateMember(Member m)
     {
-        sql = "UPDATE Members SET UserName=@username,PassWord=@password,Email=@email,Phone=@phone,Gender=@gender WHERE ID=@id";
+        sql = "UPDATE Members SET UserName=@username,PassWord=@password,Email=@email,Phone=@phone,GenderID=@gender WHERE ID=@id";
 
         SqlDataAdapter sda = new SqlDataAdapter(sql, SourcesPath);
 
@@ -106,7 +105,7 @@ public class MemberHandler
         sda.SelectCommand.Parameters.AddWithValue("@password", m.PassWord);
         sda.SelectCommand.Parameters.AddWithValue("@email", m.Email);
         sda.SelectCommand.Parameters.AddWithValue("@phone", m.Phone);
-        sda.SelectCommand.Parameters.AddWithValue("@gender", m.Gender);
+        sda.SelectCommand.Parameters.AddWithValue("@gender", m.GenderID);
 
         sda.Fill(dt);
         sda.Update(dt);
@@ -160,9 +159,9 @@ public class MemberHandler
     }
 
 
-    public void AddToMembers(string UserName, string PassWord, string Email, int Phone, string Gender)
+    public void AddToMembers(string UserName, string PassWord, string Email, string Phone, int Gender)
     {
-        sql = "insert into Members(UserName,PassWord,Email,Phone,Gender) values(@UN,@PW,@EM,@PH,@GD)";
+        sql = "insert into Members(UserName,PassWord,Email,Phone,GenderID) values(@UN,@PW,@EM,@PH,@GID)";
 
         SqlDataAdapter da = new SqlDataAdapter(sql, this.SourcesPath);
         DataTable dt = new DataTable();
@@ -171,7 +170,7 @@ public class MemberHandler
         da.SelectCommand.Parameters.AddWithValue("@PW", PassWord);
         da.SelectCommand.Parameters.AddWithValue("@EM", Email);
         da.SelectCommand.Parameters.AddWithValue("@PH", Phone);
-        da.SelectCommand.Parameters.AddWithValue("@GD", Gender);
+        da.SelectCommand.Parameters.AddWithValue("@GID", Gender);
 
 
         da.Fill(dt);

@@ -15,8 +15,10 @@
     <meta name="keywords" content="">
     <!-- meta character set -->
     <meta charset="UTF-8">
+    <!-- Favicon  -->
+    <link rel="icon" href="storeicon.ico">
     <!-- Site Title -->
-    <title>現主時</title>
+    <title>現主時購物網</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!--CSS============================================= -->
@@ -56,7 +58,7 @@
         </div>
         <nav class="navbar navbar-expand-lg  navbar-light">
             <div class="container">
-                <a id="logo" class="navbar-brand font-weight-bold" href="Home.aspx">現主時流行服飾</a>
+                <a id="logo" class="navbar-brand font-weight-bold" href="Home.aspx">現主時購物網</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -68,10 +70,8 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">產品管理</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">查詢產品</a>
+                                <a class="dropdown-item" href="#">產品一覽表</a>
                                 <a class="dropdown-item" href="CreProduct.aspx">建立產品</a>
-                                <a class="dropdown-item" href="cart.html">Update Product</a>
-                                <a class="dropdown-item" href="cart.html">Delete Product</a>
                             </div>
                         </li>
                         <!-- Dropdown Members Manager -->

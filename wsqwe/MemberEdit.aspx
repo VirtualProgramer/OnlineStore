@@ -18,7 +18,7 @@
                         Phone:
             <asp:TextBox Text='<%# Bind("Phone") %>' runat="server" ID="PhoneTextBox" CssClass="common-input" /><br /><br />
                         Gender:
-            <asp:TextBox Text='<%# Bind("Gender") %>' runat="server" ID="GenderTextBox" CssClass="common-input" /><br /><br />
+            <asp:TextBox Text='<%# Bind("GenderID") %>' runat="server" ID="GenderTextBox" CssClass="common-input" /><br /><br />
                         <asp:LinkButton runat="server" Text="Update" CommandName="Update" ID="UpdateButton" CausesValidation="True" CssClass="genric-btn success small" OnClick="UpdateButton_Click" />
                         &nbsp;
                         <asp:LinkButton runat="server" Text="Cancel" CommandName="Cancel" ID="UpdateCancelButton" CausesValidation="False" CssClass="genric-btn primary small" OnClick="UpdateCancelButton_Click" />

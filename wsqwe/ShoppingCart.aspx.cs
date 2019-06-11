@@ -26,7 +26,20 @@ public partial class ShoppingCart : System.Web.UI.Page {
 
 
     }
+    
+    public void ListCart() {
+        Dictionary<int, int> shoppingCart = Session["ShoppingCart"] as Dictionary<int, int>;
 
+        ProductHandler ph = new ProductHandler();
+
+        List<int> scList = shoppingCart.Keys.ToList();
+
+
+        foreach (int item in scList) {
+
+        Response.Write(ph.GetProductName(shoppingCart[item]));
+        }
+    }
     protected void Page_Load(object sender, EventArgs e) {
 
     }

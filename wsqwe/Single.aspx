@@ -3,7 +3,7 @@
 <script runat="server">
 
     protected void Button1_Click(object sender, EventArgs e) {
-        
+
         if (Session["ShoppingCart"] == null) {
             Session["ShoppingCart"] = new Dictionary<int, int>();
         }
@@ -16,9 +16,13 @@
 
         int amount = int.Parse(tx1.Text);
 
-        shoppingCart.Add(id, amount);
+        if (shoppingCart.Keys.Contains(id)) {
+            shoppingCart[id] = amount;
+        } else {
+            shoppingCart.Add(id, amount);
+        }
 
-        Response.Redirect($"~/ShoppingCart.aspx");
+        Response.Redirect($"~/ShoppingCart.aspx?user={Session["UserName"]}");
     }
 
 </script>

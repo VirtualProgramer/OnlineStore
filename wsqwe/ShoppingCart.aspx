@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <% =GetShoppingCartName() %>
+        <% ListCart(); %>
 
         <form runat="server">
             <asp:repeater id="Repeater1" runat="server" datasourceid="ObjectDataSource1">

@@ -116,6 +116,23 @@ public class ProductHandler {
         }
     }
 
+    public string GetProductName(int proId) {
+        SqlDataAdapter da = new SqlDataAdapter(
+           "SELECT * FROM Products where id=@id", this.SourcesPath);
+
+        da.SelectCommand.Parameters.AddWithValue("@id", proId);
+
+        DataTable dt = new DataTable();
+
+        da.Fill(dt);
+
+        if (dt.Rows.Count == 0) {
+            return null;
+        } else {
+            return dt.Rows[0]["Name"].ToString();
+        }
+    }
+
     ///////////////////以上已經修好並使用中///////////////////
 
     public void AddToProducts(string ProdName, int Price, int Amount) {

@@ -24,8 +24,8 @@
                     <div class="serial"><%# Eval("ID") %></div>
                     <div class="visit"><%# Eval("UserName") %></div>
                     <div class="visit"><%# Eval("Email") %></div>
-                    <div class="visit">0<%# Eval("Phone") %></div>
-                    <div class="visit form"><%# Eval("Gender") %></div>
+                    <div class="visit"><%# Eval("Phone") %></div>
+                    <div class="visit form"><%# Eval("GenderID") %></div>
                     <div class="visit">
                         <a href='<%#Eval("ID","MemberEdit.aspx?id={0}")%>' class="genric-btn primary small">Edit</a>&nbsp;&nbsp;&nbsp;
                         <asp:Button runat="server" ID="btnDel" CssClass="genric-btn danger-border small" Text="Del" CommandName='<%# Eval("ID") %>' OnClientClick="return confirm('Check Delete?')" OnClick="btnDel_Click" />

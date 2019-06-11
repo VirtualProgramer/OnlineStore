@@ -22,7 +22,7 @@
             shoppingCart.Add(id, amount);
         }
 
-        Response.Redirect($"~/ShoppingCart.aspx?user={Session["UserName"]}");
+        Response.Redirect($"~/ShoppingCart.aspx");
     }
 
 </script>

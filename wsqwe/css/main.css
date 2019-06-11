@@ -6919,3 +6919,15 @@ label {
     color:#f41068;
     font-weight:bolder;
 }
+
+.rdlist label {
+    margin-right:20px;
+}
+
+.rdlist input[type="radio"] {
+    margin-right: 5px;
+    border-radius: 8px;
+    background: #f9f9ff;
+    position: relative;
+    cursor: pointer;
+}

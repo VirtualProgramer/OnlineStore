@@ -1,0 +1,15 @@
+﻿SET IDENTITY_INSERT [dbo].[Categories] ON
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (1, N'Fruits and Vegetables', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (2, N'Meat and Fish', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (3, N'Cooking', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (4, N'Beverages', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (5, N'Home and Cleaning', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (6, N'Pest Control', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (7, N'Office Products', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (8, N'Beauty Products', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (9, N'Health Products', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (10, N'Pet Care', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (11, N'Home Appliances', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (12, N'Baby Care', NULL)
+INSERT INTO [dbo].[Categories] ([Id], [CategoryName], [Description]) VALUES (13, N'Other', NULL)
+SET IDENTITY_INSERT [dbo].[Categories] OFF

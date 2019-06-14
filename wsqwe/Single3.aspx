@@ -2,27 +2,30 @@
 
 <script runat="server">
 
-    protected void Button1_Click(object sender, EventArgs e) {
-
-        if (Session["ShoppingCart"] == null) {
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        if (Session["ShoppingCart"] == null)
+        {
             Session["ShoppingCart"] = new Dictionary<int, int>();
         }
 
-        Dictionary<int, int> shoppingCart = Session["ShoppingCart"] as Dictionary<int, int>;
+        Dictionary<int, int> ShopCart = Session["ShoppingCart"] as Dictionary<int, int>;
 
         int id = int.Parse(Request.QueryString["id"]);
+        TextBox txtbox1 = FormView1.FindControl("TextBox1") as TextBox;
+        int amount = int.Parse(txtbox1.Text);
 
-        TextBox tx1 = FormView1.FindControl("TextBox1") as TextBox;
-
-        int amount = int.Parse(tx1.Text);
-
-        if (shoppingCart.Keys.Contains(id)) {
-            shoppingCart[id] = amount;
-        } else {
-            shoppingCart.Add(id, amount);
+        if (ShopCart.Keys.Contains(id))
+        {
+            ShopCart[id] = amount;
+        }
+        else
+        {
+            ShopCart.Add(id, amount);
         }
 
-        //Response.Redirect($"~/ShoppingCart.aspx");
+        //ShopCart.Add(id, amount);
+
         Response.Redirect("~/Category.aspx");
     }
 

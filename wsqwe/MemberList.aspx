@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ProdMaster.master" AutoEventWireup="true" CodeFile="MemberList.aspx.cs" Inherits="MemberList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ProdBacktages.master" AutoEventWireup="true" CodeFile="MemberList.aspx.cs" Inherits="MemberList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <form runat="server">

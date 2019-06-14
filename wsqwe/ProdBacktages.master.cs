@@ -4,9 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Security;
 
-public partial class ProdMaster : System.Web.UI.MasterPage
+public partial class ProdBacktages : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -14,24 +13,14 @@ public partial class ProdMaster : System.Web.UI.MasterPage
         {
             Lbname.Visible = false;
             alogout.Visible = false;
-            aback.Visible = false;
-            
+
+
         }
         else if (Session["UserName"].ToString() == "Ben")
         {
             Lbname.Text = Session["UserName"].ToString();
-            alogin.Visible = false;
-            aregist.Visible = false;
             alogout.Visible = true;
-            aback.Visible = true;
-        }
-        else
-        {
-            Lbname.Text = Session["UserName"].ToString();
-            alogin.Visible = false;
-            aregist.Visible = false;
-            alogout.Visible = true;
-            aback.Visible = false;
+
         }
     }
 }

@@ -11,10 +11,10 @@ public partial class MemberList : System.Web.UI.Page
     {
         MemberHandler mh = new MemberHandler();
 
-        if (Session["UserName"] == null)
+        if (Session["UserName"].ToString() != "Ben")
         {
-            mh.strMsg("請先登入會員，再進行操作!");
-            Response.Redirect("~/Login.aspx");
+            string str = "您所在的用戶組並非為管理員，請洽管理員!";
+            mh.strMsg(str);
         }
 
     }

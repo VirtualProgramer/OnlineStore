@@ -85,7 +85,7 @@
                                                 <a href="#"><span class="lnr lnr-layers"></span></a>
                                                 <a href="#"><span class="lnr lnr-cart"></span></a>
                                                 <asp:HyperLink ID="HyperLink1" runat="server"
-                                                    NavigateUrl='<%# Eval("ID" , "~/Single.aspx?id={0}") %>'>
+                                                    NavigateUrl='<%# Eval("ID" , "~/Single3.aspx?id={0}") %>'>
                                                     <span class="lnr lnr-frame-expand"></span>
                                                 </asp:HyperLink>
                                                 <%--<a href="Single.aspx" data-toggle="modal" data-target="#exampleModal"><span class="lnr lnr-frame-expand"></span></a>--%>

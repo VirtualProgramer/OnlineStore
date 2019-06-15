@@ -10,7 +10,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.ComponentModel;
 
-public class Product {
+public class Product
+{
     public int Id { get; set; }
     public string Name { get; set; }
     public int Price { get; set; }
@@ -20,16 +21,19 @@ public class Product {
     public int TargetCustomer { get; set; }
 }
 
-public class ProductHandler {
+public class ProductHandler
+{
 
     private string SourcesPath;
     private string ssql;
 
-    public ProductHandler() {
+    public ProductHandler()
+    {
         SourcesPath = WebConfigurationManager.ConnectionStrings["CaseDBConnectionString1"].ConnectionString;
     }
 
-    public List<Product> GetAllProduct() {
+    public List<Product> GetAllProduct()
+    {
         SqlDataAdapter sda = new SqlDataAdapter(
             "SELECT p.Id, Name, Price, Amount, ImageFileName, CategoryName, TargetCustomer  " +
             "FROM Products p inner join Categories c on p.CategoryID = c.Id",
@@ -40,7 +44,8 @@ public class ProductHandler {
         sda.Fill(dt);
 
         var query = from row in dt.AsEnumerable()
-                    select new Product() {
+                    select new Product()
+                    {
                         Id = Convert.ToInt32(row["id"]),
                         Name = row["Name"].ToString(),
                         Price = Convert.ToInt32(row["Price"]),
@@ -53,7 +58,8 @@ public class ProductHandler {
         return query.ToList();
     }
 
-    public Product GetProduct(int id) {
+    public Product GetProduct(int id)
+    {
         SqlDataAdapter da = new SqlDataAdapter(
            "SELECT p.Id, Name, Price, Amount, ImageFileName, CategoryName, TargetCustomer  " +
             "FROM Products p inner join Categories c on p.CategoryID = c.Id where p.id=@id",
@@ -65,10 +71,14 @@ public class ProductHandler {
 
         da.Fill(dt);
 
-        if (dt.Rows.Count == 0) {
+        if (dt.Rows.Count == 0)
+        {
             return null;
-        } else {
-            return new Product() {
+        }
+        else
+        {
+            return new Product()
+            {
                 Id = Convert.ToInt32(dt.Rows[0]["id"]),
                 Name = dt.Rows[0]["Name"].ToString(),
                 Price = Convert.ToInt32(dt.Rows[0]["Price"]),
@@ -80,8 +90,10 @@ public class ProductHandler {
         }
     }
 
-    public void DeleteProduct(int id) {
-        using (SqlConnection cn = new SqlConnection(this.SourcesPath)) {
+    public void DeleteProduct(int id)
+    {
+        using (SqlConnection cn = new SqlConnection(this.SourcesPath))
+        {
             SqlCommand cmd = new SqlCommand("delete Products where id=@id", cn);
             cmd.Parameters.AddWithValue("@id", id);
             cn.Open();
@@ -89,9 +101,10 @@ public class ProductHandler {
         }
     }
 
-    public void UpdateProduct(Product p) {
+    public void UpdateProduct(Product p)
+    {
 
-        SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Categories where CategoryName=@CategoryName", 
+        SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Categories where CategoryName=@CategoryName",
             this.SourcesPath);
 
         da.SelectCommand.Parameters.AddWithValue("@CategoryName", p.CategoryName);
@@ -99,7 +112,8 @@ public class ProductHandler {
         da.Fill(dt);
         int ctId = Convert.ToInt32(dt.Rows[0]["id"]);
 
-        using (SqlConnection cn = new SqlConnection(this.SourcesPath)) {
+        using (SqlConnection cn = new SqlConnection(this.SourcesPath))
+        {
 
             SqlCommand cmd = new SqlCommand("Update Products set Name = @Name, Price = @Price, Amount = @Amount, ImageFileName = @ImageFileName, CategoryID=@CategoryID, TargetCustomer=@TargetCustomer where id=@id", cn);
 
@@ -116,7 +130,8 @@ public class ProductHandler {
         }
     }
 
-    public string GetProductName(int proId) {
+    public string GetProductName(int proId)
+    {
         SqlDataAdapter da = new SqlDataAdapter(
            "SELECT * FROM Products where id=@id", this.SourcesPath);
 
@@ -126,16 +141,20 @@ public class ProductHandler {
 
         da.Fill(dt);
 
-        if (dt.Rows.Count == 0) {
+        if (dt.Rows.Count == 0)
+        {
             return null;
-        } else {
+        }
+        else
+        {
             return dt.Rows[0]["Name"].ToString();
         }
     }
 
     ///////////////////以上已經修好並使用中///////////////////
 
-    public void AddToProducts(string ProdName, int Price, int Amount) {
+    public void AddToProducts(string ProdName, int Price, int Amount)
+    {
         ssql = "insert into Products(Name,Price,Amount) values(@prodname,@price,@amount)";
 
         SqlDataAdapter sda = new SqlDataAdapter(ssql, this.SourcesPath);
@@ -149,8 +168,10 @@ public class ProductHandler {
         sda.Update(dt);
     }
 
-    public void AddToProducts(Product p) {
-        using (SqlConnection cn = new SqlConnection(this.SourcesPath)) {
+    public void AddToProducts(Product p)
+    {
+        using (SqlConnection cn = new SqlConnection(this.SourcesPath))
+        {
             SqlCommand cmd = new SqlCommand(
                 "insert into Products values(@name , @price , @amount , @imgUrl)",
                 cn);
@@ -166,7 +187,8 @@ public class ProductHandler {
         }
     }
 
-    public void AddToProducts(string ProdName, int Price, int Amount, string ProdImg) {
+    public void AddToProducts(string ProdName, int Price, int Amount, string ProdImg)
+    {
         ssql = "insert into Products(Name,Price,Amount,ImageFileName) values(@prodname,@price,@amount,@imgfilename)";
 
         SqlDataAdapter sda = new SqlDataAdapter(ssql, this.SourcesPath);
@@ -181,7 +203,8 @@ public class ProductHandler {
         sda.Update(dt);
     }
 
-    public bool CompareProdName(string ProdName) {
+    public bool CompareProdName(string ProdName)
+    {
         ssql = "SELECT* FROM Products WHERE Name=@name";
 
         SqlDataAdapter sd = new SqlDataAdapter(ssql, this.SourcesPath);
@@ -197,7 +220,8 @@ public class ProductHandler {
 
     }
 
-    public void OutputFileFormat(string str, string FileName) {
+    public void OutputFileFormat(string str, string FileName)
+    {
         StreamWriter sw = new StreamWriter(HttpContext.Current.Server.MapPath($"{FileName}"));
 
         sw.WriteLine(str);
@@ -207,15 +231,18 @@ public class ProductHandler {
         //File.AppendAllText(FileFormat,result);
     }
 
-    public string ProdString(string N, string P, string A, string I) {
+    public string ProdString(string N, string P, string A, string I)
+    {
         return $"產品名稱：{N}，產品價格：{P}元，產品數量：{A}杯，圖片檔名：{I}";
     }
 
-    public string ProdString(string N, string P, string A) {
+    public string ProdString(string N, string P, string A)
+    {
         return $"產品名稱：{N}，產品價格：{P}元，產品數量：{A}杯";
     }
 
-    public void CapBPrice(int ProdPrice, BulletedList buList) {
+    public void CapBPrice(int ProdPrice, BulletedList buList)
+    {
         //foreach (Product item in GetCasePath()) {
         //    if (int.Parse(item.Price.ToString()) > ProdPrice) {
         //        buList.Items.Add(ProdString(item.Name, item.Price.ToString(), item.Amount.ToString(), item.ImageFileName));
@@ -223,9 +250,34 @@ public class ProductHandler {
         //}
     }
 
-    public void strMsg(string Msg) {
+    public void strMsg(string Msg)
+    {
         System.Web.HttpContext.Current.Response.Write("<Script language='Javascript'>");
         System.Web.HttpContext.Current.Response.Write($"alert('{Msg}')");
         System.Web.HttpContext.Current.Response.Write("</" + "Script>");
     }
+
+    public List<Product> GetProductsByIDs(string idString)
+    {
+        SqlDataAdapter da = new SqlDataAdapter(
+             $"select * from Products where id in ({idString})",
+             SourcesPath);
+
+        DataTable dt = new DataTable();
+
+        da.Fill(dt);
+
+        var query = from row in dt.AsEnumerable()
+                    select new Product()
+                    {
+                        Id = Convert.ToInt32(row["ID"]),
+                        Name = row["Name"].ToString(),
+                        Price = Convert.ToInt32(row["Price"]),
+                        Amount = Convert.ToInt32(row["Amount"]),
+                        ImageFileName = row["ImageFileName"] is DBNull ? "" : row["ImageFileName"].ToString()
+                    };
+
+        return query.ToList();
+    }
+
 }

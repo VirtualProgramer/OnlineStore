@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ProdMaster.master.cs" Inherits="ProdMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ProdBacktages.master.cs" Inherits="ProdBacktages" %>
 
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -18,22 +18,21 @@
     <!-- Favicon  -->
     <link rel="icon" href="storeicon.ico">
     <!-- Site Title -->
-    <title>現主時購物網</title>
+    <title>現主時購物網 | 後臺管理系統</title>
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!--CSS============================================= -->
     <link rel="stylesheet" href="css/linearicons.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css"> 
+    <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/nice-select.css">
     <link rel="stylesheet" href="css/ion.rangeSlider.css" />
     <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
+    <link href="css/MasterPage.css" rel="stylesheet" />
     <link href="css/category.css" rel="stylesheet" />
     <link href="css/UpdateProduct.css" rel="stylesheet" />
-    <link href="css/MasterPage.css" rel="stylesheet" />
-    <link href="css/Home.css" rel="stylesheet" />
     <!--JavaScript====================================== -->
     <script src="js/vendor/jquery-2.2.4.min.js"></script>
 </head>
@@ -48,45 +47,39 @@
                         <li><a href="tel:+12312-3-1209">(+886)02-1234-5678</a></li>
                         <li><a href="mailto:support@colorlib.com">聯絡我們</a></li>
                     </ul>
-                    <ul class="list">  
-                        <li><a href="#"><asp:Label runat="server" ID="Lbname" Text="" /></a></li>  
-                        <li><a href="Logout.aspx" runat="server" id="alogout"  >登出</a></li>                        
-                        <li><a href="Login.aspx" runat="server" id="alogin"  >登入</a></li>
-                        <li><a href="Registered.aspx" runat="server" id="aregist" >註冊</a></li>
-                        <li><a href="ServerLogin.aspx" runat="server" id="aback" >後臺管理</a></li>
-
+                    <ul class="list">
+                        <li><a href="#">
+                            <asp:Label runat="server" ID="Lbname" Text="" /></a></li>
+                        <li><a href="Home.aspx" runat="server" id="alogout">登出</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg  navbar-light">
             <div class="container">
-                <a id="logo" class="navbar-brand font-weight-bold" href="Home.aspx">現主時購物網</a>
+                <a id="logo" class="navbar-brand font-weight-bold" href="ServerHome.aspx">現主時購物網 | 後臺管理系統</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li><a href="Home.aspx">首頁</a></li>
-                        <li><a href="#">關於我們</a></li>
-                        <li><a href="Category.aspx">商品類別</a></li>
                         <!-- Dropdown Product Manager -->
-<%--                        <li class="dropdown">
+                        <li class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">產品管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="ProductView.aspx">產品一覽表</a>
                                 <a class="dropdown-item" href="CreProduct.aspx">建立產品</a>
                             </div>
-                        </li>--%>
+                        </li>
                         <!-- Dropdown Members Manager -->
-      <%--                  <li class="dropdown" >
+                        <li class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">會員管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="MemberList.aspx">會員清單</a>
                             </div>
-                        </li>--%>
-                        <li><a href="ShopCarts.aspx">購物車</a></li>
-                        <li><a href="#">意見回饋</a></li>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -197,4 +190,5 @@
     <script src="js/main.js"></script>
 
 </body>
+</html>
 </html>

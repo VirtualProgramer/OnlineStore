@@ -1,12 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ProdMaster.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ProdBacktages.master" AutoEventWireup="true" CodeFile="ServerLogin.aspx.cs" Inherits="ServerLogin" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="col-md-6" id="logindiv">
         <div class="login-form ">
             <h3 class="billing-title text-center">登入</h3>
             <div class="imgcontainer">
                 <img src="userimg.png" id="meimg" alt="Avatar" class="avatar">
-                <p class="text-center mt-80 mb-40">美好的一天，從現主時開始!</p>
+                <p class="text-center mt-80 mb-40">歡迎登入後臺管理系統!</p>
             </div>
             
             <form runat="server">

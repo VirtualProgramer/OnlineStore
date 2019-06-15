@@ -106,8 +106,6 @@ public class ProductHandler {
         }
     }
 
-    ///////////////////以上已經修好並使用中///////////////////
-    
     public void UpdateProduct(Product p) {
 
         SqlDataAdapter da = new SqlDataAdapter("SELECT * FROM Categories where CategoryName=@CategoryName",
@@ -139,7 +137,9 @@ public class ProductHandler {
             cmd.ExecuteNonQuery();
         }
     }
-
+   
+    ///////////////////以上已經修好並使用中///////////////////
+    
     public void AddToProducts(string ProdName, int Price, int Amount) {
         ssql = "insert into Products(Name,Price,Amount) values(@prodname,@price,@amount)";
 

@@ -30,9 +30,10 @@
     <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
-    <link href="css/MasterPage.css" rel="stylesheet" />
     <link href="css/category.css" rel="stylesheet" />
     <link href="css/UpdateProduct.css" rel="stylesheet" />
+    <link href="css/MasterPage.css" rel="stylesheet" />
+    <link href="css/Home.css" rel="stylesheet" />
     <!--JavaScript====================================== -->
     <script src="js/vendor/jquery-2.2.4.min.js"></script>
 </head>

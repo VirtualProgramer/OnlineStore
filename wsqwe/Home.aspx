@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row fullscreen align-items-center justify-content-center">
                 <div class="col-lg-6 col-md-12 d-flex align-self-end img-right no-padding">
-                    <img class="img-fluid" src="img/header-img.png" alt="">
+                    <img class="img-fluid" src="img/home/header-img.png" alt="">
                 </div>
                 <div class="banner-content col-lg-6 col-md-12">
                     <h1 class="title-top"><span>在的喊在~</span> 全館商品滿兩千送兩百!</h1>
@@ -37,7 +37,8 @@
                             <div class="content">
                                 <a href="#" target="_blank">
                                     <div class="content-overlay"></div>
-                                    <img class="content-image img-fluid d-block mx-auto" src="ProdImages/ricescoll1.jpg" alt="">
+                                    <div class="content-image img-fluid d-block mx-auto" id="home-image-1" style="background-image: url(/img/home/c1.jpg)"></div>
+                                    <%--<img class="content-image img-fluid d-block mx-auto" src="img/home/c1.jpg" alt="">--%>
                                     <div class="content-details fadeIn-bottom">
                                         <h3 class="content-title">明太子御飯糰</h3>
                                     </div>
@@ -48,7 +49,8 @@
                             <div class="content">
                                 <a href="#" target="_blank">
                                     <div class="content-overlay"></div>
-                                    <img class="content-image img-fluid d-block mx-auto" src="img/c2.jpg" alt="">
+                                    <div class="content-image img-fluid d-block mx-auto" id="home-image-2" style="background-image: url(/img/home/c2.jpg)"></div>
+                                    <%--<img class="content-image img-fluid d-block mx-auto" src="img/home/c2.jpg" alt="">--%>
                                     <div class="content-details fadeIn-bottom">
                                         <h3 class="content-title">Product for Couple</h3>
                                     </div>
@@ -59,7 +61,8 @@
                             <div class="content">
                                 <a href="#" target="_blank">
                                     <div class="content-overlay"></div>
-                                    <img class="content-image img-fluid d-block mx-auto" src="img/c3.jpg" alt="">
+                                    <div class="content-image img-fluid d-block mx-auto" id="home-image-3" style="background-image: url(/img/home/c3.jpg)"></div>
+                                    <%--<img class="content-image img-fluid d-block mx-auto" src="img/home/c3.jpg" alt="">--%>
                                     <div class="content-details fadeIn-bottom">
                                         <h3 class="content-title">Shop Now</h3>
                                     </div>
@@ -72,7 +75,8 @@
                     <div class="content">
                         <a href="#" target="_blank">
                             <div class="content-overlay"></div>
-                            <img class="content-image img-fluid d-block mx-auto" src="img/c4.jpg" alt="">
+                            <div class="content-image img-fluid d-block mx-auto" id="home-image-4" style="background-image: url(/img/home/c4.jpg)"></div>
+                            <%--<img class="content-image img-fluid d-block mx-auto" src="img/home/c4.jpg" alt="">--%>
                             <div class="content-details fadeIn-bottom">
                                 <h3 class="content-title">Product For Men</h3>
                             </div>
@@ -99,7 +103,7 @@
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
                         <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="ProdImages/Greentea.jpg" alt="">
+                        <img class="content-image img-fluid d-block mx-auto" src="img/ProdImages/Greentea.jpg" alt="">
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
                                 <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -117,7 +121,7 @@
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
                         <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="ProdImages/Orange Julice.jpg" alt="">
+                        <img class="content-image img-fluid d-block mx-auto" src="img/ProdImages/Orange Julice.jpg" alt="">
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
                                 <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -135,7 +139,7 @@
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
                         <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="ProdImages/yurowzoo.jpg" alt="">
+                        <img class="content-image img-fluid d-block mx-auto" src="img/ProdImages/yurowzoo.jpg" alt="">
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
                                 <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -153,7 +157,7 @@
                 <div class="col-lg-3 col-md-6 single-product">
                     <div class="content">
                         <div class="content-overlay"></div>
-                        <img class="content-image img-fluid d-block mx-auto" src="ProdImages/soymilk.jpg" alt="">
+                        <img class="content-image img-fluid d-block mx-auto" src="img/ProdImages/soymilk.jpg" alt="">
                         <div class="content-details fadeIn-bottom">
                             <div class="bottom d-flex align-items-center justify-content-center">
                                 <a href="#"><span class="lnr lnr-heart"></span></a>

@@ -4,9 +4,9 @@
 
     public string GetFileName(object obj) {
         if (obj.ToString() == "") {
-            return "img/default.png";
+            return "style=\"background-image:url('/img/default.png')\"";
         } else {
-            return $"img/{obj}";
+            return $"style=\"background-image:url('/img/{obj}')\"";
         }
     }
 
@@ -78,7 +78,8 @@
                                 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
                                     <div class="content">
                                         <div class="content-overlay"></div>
-                                        <img class="content-image img-fluid d-block mx-auto" src='<%# GetFileName(Eval("ImageFileName")) %>' alt="">
+                                        <div class="content-image img-fluid d-block mx-auto my-category-product-img" <%# GetFileName(Eval("ImageFileName")) %>></div>
+                                        <%--<img class="content-image img-fluid d-block mx-auto" src='<%# GetFileName(Eval("ImageFileName")) %>' alt="">--%>
                                         <div class="content-details fadeIn-bottom">
                                             <div class="bottom d-flex align-items-center justify-content-center">
                                                 <a href="#"><span class="lnr lnr-heart"></span></a>

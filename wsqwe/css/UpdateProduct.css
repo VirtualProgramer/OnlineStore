@@ -25,6 +25,12 @@
     font-weight: 500;
 }
 
-.update-button:hover {
-    color: white;
+    .update-button:hover {
+        color: white;
+    }
+
+#my-fileupload {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

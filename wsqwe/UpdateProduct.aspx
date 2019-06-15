@@ -25,7 +25,7 @@
                     <div class="login-form">
                         <h3 class="billing-title text-center">Before</h3>
                         <p class="text-center mt-40 mb-30">Welcome back! Sign in to your account </p>
-                        <asp:FormView CssClass="w-100" runat="server" DataSourceID="ObjectDataSource1">
+                        <asp:formview cssclass="w-100" runat="server" datasourceid="ObjectDataSource1">
                             <ItemTemplate>
                                 <asp:Label ID="IdLabel" class="update-before-label" runat="server" Text='<%# Bind("Id") %>' />
                                 <asp:Label ID="NameLabel" class="update-before-label" runat="server" Text='<%# Bind("Name") %>' />
@@ -35,8 +35,8 @@
                                 <asp:Label class="update-before-label" Text='<%# Bind("CategoryName") %>' runat="server" ID="CategoryNameLabel" />
                                 <asp:Label class="update-before-label" Text='<%# Bind("TargetCustomer") %>' runat="server" ID="TargetCustomerLabel" />
                             </ItemTemplate>
-                        </asp:FormView>
-                        <asp:Button class="view-btn color-2 mt-20 w-100" ID="Button1" runat="server" Text="Cancel" PostBackUrl="~/ProductView.aspx" />
+                        </asp:formview>
+                        <asp:button class="primary-btn text-uppercase view-btn color-2 mt-20 w-100 update-button" id="Button1" runat="server" text="Cancel" postbackurl="~/ProductView.aspx" />
                         <%--<button class="view-btn color-2 mt-20 w-100"><span>Cancel</span></button>--%>
                     </div>
                 </div>
@@ -44,31 +44,38 @@
                     <div class="register-form">
                         <h3 class="billing-title text-center">After</h3>
                         <p class="text-center mt-40 mb-30">Create your very own account </p>
-                        <asp:FormView ID="FormView1" CssClass="w-100" runat="server" DataKeyNames="Id" DataSourceID="ObjectDataSource1" DefaultMode="Edit">
+                        <asp:formview id="FormView1" cssclass="w-100" runat="server" datakeynames="Id" datasourceid="ObjectDataSource1" defaultmode="Edit" onitemupdating="FormView1_ItemUpdating">
                             <EditItemTemplate>
                                 <asp:Label ID="Label1" class="update-after-label common-input" runat="server" Text='<%# Bind("Id") %>'></asp:Label>
                                 <asp:TextBox Text='<%# Bind("Name") %>' placeholder="Product name*" class="update-after-label common-input" runat="server" ID="NameTextBox" />
                                 <asp:TextBox Text='<%# Bind("Price") %>' placeholder="Price*" class="update-after-label common-input" runat="server" ID="PriceTextBox" />
                                 <asp:TextBox Text='<%# Bind("Amount") %>' placeholder="Amount*" class="update-after-label common-input" runat="server" ID="AmountTextBox" />
-                                <asp:TextBox Text='<%# Bind("ImageFileName") %>' placeholder="Image file name*" class="update-after-label common-input" runat="server" ID="ImageFileNameTextBox" />
+                                
+                                <div id="my-fileupload" style="display:flex;flex-direction:row;justify-content:space-between;">
+                                    <input type="button" value="選擇圖檔" onclick="ContentPlaceHolder1_FormView1_f.click()" style="width:30%; height: 40px;margin: 20px 0 0;padding: 0;"/> 
+                                    <asp:TextBox Text='<%# Bind("ImageFileName") %>' placeholder="請選擇要上傳的圖片..." class="update-after-label common-input" name="ctl00$ContentPlaceHolder1$FormView1$TextBox1" runat="server" ID="TextBox1" style="padding:0 10px;"/>
+                                    <asp:FileUpload id="f" runat="server" onchange="ctl00$ContentPlaceHolder1$FormView1$TextBox1.value=this.value" 
+                                        style="display:none" accept=".jpg,.png"></asp:FileUpload>
+                                </div>
+
                                 <asp:TextBox Text='<%# Bind("CategoryName") %>' placeholder="Category*" class="update-after-label common-input" runat="server" ID="CategoryNameTextBox" />
                                 <asp:TextBox Text='<%# Bind("Price") %>' placeholder="Target Customer*" class="update-after-label common-input" runat="server" ID="TargetCustomerTextBox" />
-                                <asp:LinkButton CssClass="view-btn color-2 mt-20 w-100 update-button" runat="server" Text="Update" CommandName="Update" ID="UpdateButton" CausesValidation="True" />
-                                <%--<asp:LinkButton runat="server" Text="取消" CommandName="Cancel" ID="UpdateCancelButton" CausesValidation="False" />--%>
-                                <%--<button class="view-btn color-2 mt-20 w-100" runat="server" commandname="Update" id="UpdateButton" causesvalidation="True"><span>Update</span></button>--%>
+                                
+                                <asp:LinkButton class="primary-btn text-uppercase view-btn color-2 mt-20 w-100 update-button" runat="server" Text="Update" CommandName="Update" ID="UpdateButton" CausesValidation="True" />
+
                             </EditItemTemplate>
-                        </asp:FormView>
+                        </asp:formview>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End My Account -->
     </form>
-    <asp:ObjectDataSource runat="server" ID="ObjectDataSource1" SelectMethod="GetProduct" TypeName="ProductHandler" DataObjectTypeName="Product" UpdateMethod="UpdateProduct">
+    <asp:objectdatasource runat="server" id="ObjectDataSource1" selectmethod="GetProduct" typename="ProductHandler" dataobjecttypename="Product" updatemethod="UpdateProduct">
         <SelectParameters>
             <asp:QueryStringParameter Name="id" QueryStringField="id" Type="Int32" />
         </SelectParameters>
-    </asp:ObjectDataSource>
+    </asp:objectdatasource>
 
 </asp:Content>
 

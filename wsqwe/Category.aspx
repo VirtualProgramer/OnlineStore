@@ -50,18 +50,18 @@
                     <div class="sorting mr-auto">
                         <select class="per-page">
                             <option value="6">Show 6</option>
+                            <option value="9">Show 9</option>
                             <option value="12">Show 12</option>
-                            <option value="18">Show 18</option>
                         </select>
                     </div>
                     <div class="pagination">
-                        <a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+                        <%-- <a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
                         <a class="page-number active">1</a>
                         <a class="page-number">2</a>
                         <a class="page-number">3</a>
                         <a class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                         <a class="page-number">6</a>
-                        <a class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        <a class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>--%>
                     </div>
                 </div>
                 <!-- End Filter Bar -->
@@ -112,20 +112,20 @@
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
                     <div class="sorting mr-auto">
-                        <select>
-                            <option value="1">Show 12</option>
-                            <option value="1">Show 12</option>
-                            <option value="1">Show 12</option>
+                        <select class="per-page">
+                            <option value="6">Show 6</option>
+                            <option value="9">Show 9</option>
+                            <option value="12">Show 12</option>
                         </select>
                     </div>
                     <div class="pagination">
-                        <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+                        <%--<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
                         <a href="#" class="active">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                         <a href="#">6</a>
-                        <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>--%>
                     </div>
                 </div>
                 <!-- End Filter Bar -->
@@ -423,30 +423,103 @@
     <!-- End Most Search Product Area -->
 
     <script>
-        $(function () {
-            //alert(maxPage());
-
-            $(".pagination .page-number").click(function () {
-                $(".page-number").removeClass("active");
-                $(this).addClass("active");
-
-                //showSinglePage();
-            });
-
-            //$("select").change(function () {
-            //    alert($(this).val());
-            //});
-        });
+        var pageNow = 1;
+        var perPageNumber = $(".per-page").val();
 
         function maxPage() {
             var pdListNumber = $(".single-product-list").children(".single-product").length;
-            var perPageNumber = $(".per-page").val();
             return Math.ceil(pdListNumber / perPageNumber);
         };
 
-        //function showSinglePage() {
+        function showSingleProduct() {
+            var min = (pageNow - 1) * perPageNumber;
+            var max = pageNow * perPageNumber;
+            $(".single-product").hide();
+            if (pageNow == 1) {
+                $(`.single-product-list .single-product:lt(${max})`).show();
+            } else {
+                $(`.single-product-list .single-product:lt(${max}):gt(${min - 1})`).show();
+            }
+        }
 
-        //};
+        //自動生成翻頁按鈕
+        function creatPagination() {
+
+            var pageNumber = maxPage();
+
+            if (pageNumber == 1) {
+                $(".pagination").append(
+                    `<a href="#1" class="page-number active">1</a>`
+                );
+            } else {
+                $(".pagination").append(
+                    `<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>` +
+                    `<a href="#1" class="active page-number">1</a>`
+                );
+                if (pageNumber < 6) {
+                    for (let index = 2; index < pageNumber + 1; index++) {
+                        $(".pagination").append(
+                            `<a href="#${index}" class="page-number">${index}</a>`
+                        );
+                    }
+                } else {
+                    $(".pagination").append(
+                        `<a href="#2" class="page-number">2</a>` +
+                        `<a href="#3" class="page-number">3</a>` +
+                        `<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>` +
+                        `<a href="#${pageNumber}" class="page-number">${pageNumber}</a>`
+                    );
+                }
+                $(".pagination").append(
+                    `<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>`
+                );
+            }
+        }
+
+        //綁定切換功能
+        function switchPage() {
+
+            $(".pagination .page-number").click(function () {
+                if (!$(this).hasClass("active")) {
+
+                    pageNow = $(this).text();
+
+                    $(".page-number").removeClass("active");
+                    $(`.page-number:contains(${pageNow})`).addClass("active");
+
+                    showSingleProduct();
+                }
+            });
+        }
+
+
+        $(function () {
+
+            //顯示首頁產品清單
+            var firstPageNumber = $("select.per-page:first").val();
+            $(".single-product-list .single-product:gt(5)").hide();
+
+            creatPagination();
+
+            switchPage();
+
+            $("select.per-page").change(function () {
+                perPageNumber = $(this).val();
+
+                //同步所有的select
+                //$("select.per-page").
+                //$('select.per-page').val(perPageNumber);
+                
+                $(".pagination").empty();
+                creatPagination();
+                switchPage();
+                pageNow = 1;
+                $(this).attr("selected", true);
+                showSingleProduct();
+            });
+
+        });
+
     </script>
 
 </asp:Content>

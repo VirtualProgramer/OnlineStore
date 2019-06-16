@@ -453,43 +453,89 @@
                 );
             } else {
                 $(".pagination").append(
-                    `<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>` +
-                    `<a href="#1" class="active page-number">1</a>`
+                    `<a href="#1" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>`
+                    //`<a href="#1" class="active page-number">1</a>`
                 );
                 if (pageNumber < 6) {
-                    for (let index = 2; index < pageNumber + 1; index++) {
+                    for (let index = 1; index < pageNumber + 1; index++) {
                         $(".pagination").append(
                             `<a href="#${index}" class="page-number">${index}</a>`
                         );
                     }
                 } else {
-                    $(".pagination").append(
-                        `<a href="#2" class="page-number">2</a>` +
-                        `<a href="#3" class="page-number">3</a>` +
-                        `<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>` +
-                        `<a href="#${pageNumber}" class="page-number">${pageNumber}</a>`
-                    );
+                    if (pageNow == 1 || pageNow == 2) {
+                        $(".pagination").append(
+                            `<a href="#1" class="page-number">1</a>` +
+                            `<a href="#2" class="page-number">2</a>` +
+                            `<a href="#3" class="page-number">3</a>` +
+                            `<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>` +
+                            `<a href="#${pageNumber}" class="page-number">${pageNumber}</a>`
+                        );
+                    } else {
+                        if (pageNow > (pageNumber - 3) && pageNow <= pageNumber) {
+                            $(".pagination").append(
+                                `<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>` +
+                                `<a href="#${pageNumber - 3}" class="page-number">${pageNumber - 3}</a>` +
+                                `<a href="#${pageNumber - 2}" class="page-number">${pageNumber - 2}</a>` +
+                                `<a href="#${pageNumber - 1}" class="page-number">${pageNumber - 1}</a>` +
+                                `<a href="#${pageNumber}" class="page-number">${pageNumber}</a>`
+                            );
+                        } else {
+                            $(".pagination").append(
+                                `<a href="#${pageNow - 1}" class="page-number">${pageNow - 1}</a>` +
+                                `<a href="#${pageNow}" class="page-number">${pageNow}</a>` +
+                                `<a href="#${Number(pageNow) + 1}" class="page-number">${Number(pageNow) + 1}</a>` +
+                                `<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>` +
+                                `<a href="#${pageNumber}" class="page-number">${pageNumber}</a>`
+                            );
+                        }
+                    }
                 }
                 $(".pagination").append(
-                    `<a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>`
+                    `<a href="#${maxPage()}" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>`
                 );
             }
         }
 
-        //綁定切換功能
+        //綁定換頁功能
         function switchPage() {
 
             $(".pagination .page-number").click(function () {
+
                 if (!$(this).hasClass("active")) {
 
                     pageNow = $(this).text();
+
+                    $(".pagination .prev-arrow").attr("href", `#${pageNow}`);
+                    $(".pagination .next-arrow").attr("href", `#${pageNow}`);
 
                     $(".page-number").removeClass("active");
                     $(`.page-number:contains(${pageNow})`).addClass("active");
 
                     showSingleProduct();
-
                     $("html").scrollTop(250);
+
+                    //alert(pageNow);
+                }
+
+                $(".pagination").empty();
+                creatPagination();
+                switchPage();
+                $(`.page-number:contains(${pageNow})`).addClass("active");
+
+            });
+
+            //往前一頁
+            $(".pagination .prev-arrow").click(function () {
+                if (pageNow != 1) {
+                    $(`.pagination .page-number[href="#${pageNow - 1}"]`).trigger("click");
+                }
+            });
+
+            //往後一頁
+            $(".pagination .next-arrow").click(function () {
+                if (pageNow != maxPage()) {
+                    $(`.pagination .page-number[href="#${Number(pageNow) + 1}"]`).trigger("click");
                 }
             });
         }
@@ -497,11 +543,11 @@
         $(function () {
 
             //顯示首頁產品清單
-            var firstPageNumber = $("select.per-page:first").val();
             $(".single-product-list .single-product:gt(5)").hide();
-
+            //生成翻頁按鈕
             creatPagination();
-
+            $(`.page-number:contains(${pageNow})`).addClass("active");
+            //綁定換頁功能
             switchPage();
 
             //改變每頁要顯示的產品個數
@@ -516,9 +562,10 @@
 
                 //重新輸出清單
                 $(".pagination").empty();
+                pageNow = 1;
                 creatPagination();
                 switchPage();
-                pageNow = 1;
+                $(`.page-number:contains(${pageNow})`).addClass("active");
                 $(this).attr("selected", true);
                 showSingleProduct();
 

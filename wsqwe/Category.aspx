@@ -488,10 +488,11 @@
                     $(`.page-number:contains(${pageNow})`).addClass("active");
 
                     showSingleProduct();
+
+                    $("html").scrollTop(250);
                 }
             });
         }
-
 
         $(function () {
 
@@ -503,19 +504,26 @@
 
             switchPage();
 
+            //改變每頁要顯示的產品個數
             $("select.per-page").change(function () {
                 perPageNumber = $(this).val();
 
                 //同步所有的select
-                //$("select.per-page").
-                //$('select.per-page').val(perPageNumber);
-                
+                $("div.per-page ul li").removeClass("selected");
+                $(`div.per-page ul li[data-value=${perPageNumber}]`).addClass("selected");
+                $("select.per-page").val(perPageNumber);
+                $("div.per-page span.current").text($(`select.per-page option[value=${perPageNumber}]:first`).text());
+
+                //重新輸出清單
                 $(".pagination").empty();
                 creatPagination();
                 switchPage();
                 pageNow = 1;
                 $(this).attr("selected", true);
                 showSingleProduct();
+
+                //滾輪至適當高度
+                $("html").scrollTop(250);
             });
 
         });

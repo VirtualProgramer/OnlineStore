@@ -13,6 +13,7 @@
                         還有機會獲得<br>
                         1,688購物金!
                     </h1>
+
                     <button class="primary-btn text-uppercase"><a href="Registered.aspx">即刻加入!</a></button>
                 </div>
             </div>

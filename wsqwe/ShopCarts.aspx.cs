@@ -9,6 +9,13 @@ public partial class ShopCarts : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["UserName"] == null)
+        {
+            ProductHandler ph = new ProductHandler();
+            string str = "請先登入會員在進行購物車功能!";
+            ph.strMsg(str);
+        }
+
         if (Session["ShoppingCart"] != null)
         {
 
@@ -20,10 +27,6 @@ public partial class ShopCarts : System.Web.UI.Page
 
             ShoppingCartHandler sch = new ShoppingCartHandler();
             List<ShoppingCart> sList = sch.GetShoppingCartList(shoppingCart, prodList);
-
-            Label1.Text = "";
-
-            
 
             Repeater1.DataSource = sList;
             Repeater1.DataBind();
@@ -44,5 +47,10 @@ public partial class ShopCarts : System.Web.UI.Page
             string str = "購物車內無任何商品";
             ph.strMsg(str);
         }
+    }
+
+    protected void btnCheck_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Confermation.aspx");
     }
 }

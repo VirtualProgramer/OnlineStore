@@ -4,9 +4,9 @@
 
     public string GetFileName(object obj) {
         if (obj.ToString() == "") {
-            return "img/default.png";
+            return "style=\"background-image:url('/img/default.png')\"";
         } else {
-            return $"img/{obj}";
+            return $"style=\"background-image:url('/img/{obj}')\"";
         }
     }
 
@@ -50,18 +50,18 @@
                     <div class="sorting mr-auto">
                         <select class="per-page">
                             <option value="6">Show 6</option>
+                            <option value="9">Show 9</option>
                             <option value="12">Show 12</option>
-                            <option value="18">Show 18</option>
                         </select>
                     </div>
                     <div class="pagination">
-                        <a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+                        <%-- <a class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
                         <a class="page-number active">1</a>
                         <a class="page-number">2</a>
                         <a class="page-number">3</a>
                         <a class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                         <a class="page-number">6</a>
-                        <a class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        <a class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>--%>
                     </div>
                 </div>
                 <!-- End Filter Bar -->
@@ -78,7 +78,8 @@
                                 <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
                                     <div class="content">
                                         <div class="content-overlay"></div>
-                                        <img class="content-image img-fluid d-block mx-auto" src='<%# GetFileName(Eval("ImageFileName")) %>' alt="">
+                                        <div class="content-image img-fluid d-block mx-auto my-category-product-img" <%# GetFileName(Eval("ImageFileName")) %>></div>
+                                        <%--<img class="content-image img-fluid d-block mx-auto" src='<%# GetFileName(Eval("ImageFileName")) %>' alt="">--%>
                                         <div class="content-details fadeIn-bottom">
                                             <div class="bottom d-flex align-items-center justify-content-center">
                                                 <a href="#"><span class="lnr lnr-heart"></span></a>
@@ -111,20 +112,20 @@
                 <!-- Start Filter Bar -->
                 <div class="filter-bar d-flex flex-wrap align-items-center">
                     <div class="sorting mr-auto">
-                        <select>
-                            <option value="1">Show 12</option>
-                            <option value="1">Show 12</option>
-                            <option value="1">Show 12</option>
+                        <select class="per-page">
+                            <option value="6">Show 6</option>
+                            <option value="9">Show 9</option>
+                            <option value="12">Show 12</option>
                         </select>
                     </div>
                     <div class="pagination">
-                        <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+                        <%--<a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
                         <a href="#" class="active">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
                         <a href="#">6</a>
-                        <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                        <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>--%>
                     </div>
                 </div>
                 <!-- End Filter Bar -->
@@ -422,30 +423,158 @@
     <!-- End Most Search Product Area -->
 
     <script>
-        $(function () {
-            //alert(maxPage());
-
-            $(".pagination .page-number").click(function () {
-                $(".page-number").removeClass("active");
-                $(this).addClass("active");
-
-                //showSinglePage();
-            });
-
-            //$("select").change(function () {
-            //    alert($(this).val());
-            //});
-        });
+        var pageNow = 1;
+        var perPageNumber = $(".per-page").val();
 
         function maxPage() {
             var pdListNumber = $(".single-product-list").children(".single-product").length;
-            var perPageNumber = $(".per-page").val();
             return Math.ceil(pdListNumber / perPageNumber);
         };
 
-        //function showSinglePage() {
+        function showSingleProduct() {
+            var min = (pageNow - 1) * perPageNumber;
+            var max = pageNow * perPageNumber;
+            $(".single-product").hide();
+            if (pageNow == 1) {
+                $(`.single-product-list .single-product:lt(${max})`).show();
+            } else {
+                $(`.single-product-list .single-product:lt(${max}):gt(${min - 1})`).show();
+            }
+        }
 
-        //};
+        //自動生成翻頁按鈕
+        function creatPagination() {
+
+            var pageNumber = maxPage();
+
+            if (pageNumber == 1) {
+                $(".pagination").append(
+                    `<a href="#1" class="page-number active">1</a>`
+                );
+            } else {
+                $(".pagination").append(
+                    `<a href="#1" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>`
+                    //`<a href="#1" class="active page-number">1</a>`
+                );
+                if (pageNumber < 6) {
+                    for (let index = 1; index < pageNumber + 1; index++) {
+                        $(".pagination").append(
+                            `<a href="#${index}" class="page-number">${index}</a>`
+                        );
+                    }
+                } else {
+                    if (pageNow == 1 || pageNow == 2) {
+                        $(".pagination").append(
+                            `<a href="#1" class="page-number">1</a>` +
+                            `<a href="#2" class="page-number">2</a>` +
+                            `<a href="#3" class="page-number">3</a>` +
+                            `<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>` +
+                            `<a href="#${pageNumber}" class="page-number">${pageNumber}</a>`
+                        );
+                    } else {
+                        if (pageNow > (pageNumber - 3) && pageNow <= pageNumber) {
+                            $(".pagination").append(
+                                `<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>` +
+                                `<a href="#${pageNumber - 3}" class="page-number">${pageNumber - 3}</a>` +
+                                `<a href="#${pageNumber - 2}" class="page-number">${pageNumber - 2}</a>` +
+                                `<a href="#${pageNumber - 1}" class="page-number">${pageNumber - 1}</a>` +
+                                `<a href="#${pageNumber}" class="page-number">${pageNumber}</a>`
+                            );
+                        } else {
+                            $(".pagination").append(
+                                `<a href="#${pageNow - 1}" class="page-number">${pageNow - 1}</a>` +
+                                `<a href="#${pageNow}" class="page-number">${pageNow}</a>` +
+                                `<a href="#${Number(pageNow) + 1}" class="page-number">${Number(pageNow) + 1}</a>` +
+                                `<a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>` +
+                                `<a href="#${pageNumber}" class="page-number">${pageNumber}</a>`
+                            );
+                        }
+                    }
+                }
+                $(".pagination").append(
+                    `<a href="#${maxPage()}" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>`
+                );
+            }
+        }
+
+        //綁定換頁功能
+        function switchPage() {
+
+            $(".pagination .page-number").click(function () {
+
+                if (!$(this).hasClass("active")) {
+
+                    pageNow = $(this).text();
+
+                    $(".pagination .prev-arrow").attr("href", `#${pageNow}`);
+                    $(".pagination .next-arrow").attr("href", `#${pageNow}`);
+
+                    $(".page-number").removeClass("active");
+                    $(`.page-number:contains(${pageNow})`).addClass("active");
+
+                    showSingleProduct();
+                    $("html").scrollTop(250);
+
+                    //alert(pageNow);
+                }
+
+                $(".pagination").empty();
+                creatPagination();
+                switchPage();
+                $(`.page-number:contains(${pageNow})`).addClass("active");
+
+            });
+
+            //往前一頁
+            $(".pagination .prev-arrow").click(function () {
+                if (pageNow != 1) {
+                    $(`.pagination .page-number[href="#${pageNow - 1}"]`).trigger("click");
+                }
+            });
+
+            //往後一頁
+            $(".pagination .next-arrow").click(function () {
+                if (pageNow != maxPage()) {
+                    $(`.pagination .page-number[href="#${Number(pageNow) + 1}"]`).trigger("click");
+                }
+            });
+        }
+
+        $(function () {
+
+            //顯示首頁產品清單
+            $(".single-product-list .single-product:gt(5)").hide();
+            //生成翻頁按鈕
+            creatPagination();
+            $(`.page-number:contains(${pageNow})`).addClass("active");
+            //綁定換頁功能
+            switchPage();
+
+            //改變每頁要顯示的產品個數
+            $("select.per-page").change(function () {
+                perPageNumber = $(this).val();
+
+                //同步所有的select
+                $("div.per-page ul li").removeClass("selected");
+                $(`div.per-page ul li[data-value=${perPageNumber}]`).addClass("selected");
+                $("select.per-page").val(perPageNumber);
+                $("div.per-page span.current").text($(`select.per-page option[value=${perPageNumber}]:first`).text());
+
+                //重新輸出清單
+                $(".pagination").empty();
+                pageNow = 1;
+                creatPagination();
+                switchPage();
+                $(`.page-number:contains(${pageNow})`).addClass("active");
+                $(this).attr("selected", true);
+                showSingleProduct();
+
+                //滾輪至適當高度
+                $("html").scrollTop(250);
+            });
+
+        });
+
     </script>
 
 </asp:Content>

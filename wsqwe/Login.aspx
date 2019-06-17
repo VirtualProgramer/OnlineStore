@@ -5,7 +5,6 @@
         <div class="login-form ">
             <h3 class="billing-title text-center">登入</h3>
             <div class="imgcontainer">
-                <img src="userimg.png" id="meimg" alt="Avatar" class="avatar">
                 <p class="text-center mt-80 mb-40">美好的一天，從現主時開始!</p>
             </div>
             

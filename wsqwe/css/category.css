@@ -1,6 +1,13 @@
-﻿body {
+﻿.uuu-category-section {
+    margin-bottom: 100px;
 }
 
-.uuu-category-section{
-    margin-bottom:100px;
+.my-category-product-img {
+    width: 100%;
+    height: 0;
+    padding-bottom: 106.87%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /*background-image:url(../img/default.png);*/
 }

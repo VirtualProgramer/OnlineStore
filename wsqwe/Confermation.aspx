@@ -42,7 +42,6 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- End Billing Details Form -->
 
     <!-- Start Most Search Product Area -->

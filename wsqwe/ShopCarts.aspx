@@ -89,7 +89,7 @@
         </div>
         <div class="shipping-area d-flex justify-content-end">
             <div class="tile text-uppercase">Shipping</div>
-            <form action="#" class="d-inline-flex flex-column align-items-end">
+            <form runat="server" class="d-inline-flex flex-column align-items-end">
                 <ul class="d-flex flex-column align-items-end">
                     <li class="filter-list">
                         <label for="flat-rate">Flat Rate:<span>$5.00</span></label>
@@ -123,8 +123,8 @@
                         <option value="1">Select a State</option>
                     </select>
                 </div>
-                <input type="text" placeholder="Postcode/Zipcode" onfocus="this.placeholder=''" onblur="this.placeholder = 'Postcode/Zipcode'" required class="common-input mt-10">
-                <button class="view-btn color-2 mt-10"><span>Update</span></button>
+                <%--<input type="text" placeholder="Postcode/Zipcode" onfocus="this.placeholder=''" onblur="this.placeholder = 'Postcode/Zipcode'" required class="common-input mt-10">--%>
+                <asp:Button ID="btnCheck" runat="server" Text="Checkout" CssClass="view-btn btn-pink mt-10" OnClick="btnCheck_Click" />
             </form>
 
         </div>

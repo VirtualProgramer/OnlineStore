@@ -24,7 +24,7 @@
     <!--CSS============================================= -->
     <link rel="stylesheet" href="css/linearicons.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.css"> 
+    <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/nice-select.css">
     <link rel="stylesheet" href="css/ion.rangeSlider.css" />
     <link rel="stylesheet" href="css/ion.rangeSlider.skinFlat.css" />
@@ -48,12 +48,14 @@
                         <li><a href="tel:+12312-3-1209">(+886)02-1234-5678</a></li>
                         <li><a href="mailto:support@colorlib.com">聯絡我們</a></li>
                     </ul>
-                    <ul class="list">  
-                        <li><a href="#"><asp:Label runat="server" ID="Lbname" Text="" /></a></li>  
-                        <li><a href="Logout.aspx" runat="server" id="alogout"  >登出</a></li>                        
-                        <li><a href="Login.aspx" runat="server" id="alogin"  >登入</a></li>
-                        <li><a href="Registered.aspx" runat="server" id="aregist" >註冊</a></li>
-                        <li><a href="ServerHome.aspx" runat="server" id="aback" >後臺管理</a></li>
+                    <ul class="list">
+                        <li><a href="#">
+                            <asp:Label runat="server" ID="Lbname" Text="" /></a></li>
+                        <li><a href="Logout.aspx" runat="server" id="alogout">登出</a></li>
+                        <li><a href="Registered.aspx" runat="server" id="aregist">註冊</a></li>
+
+                        <li><a href="Login.aspx" runat="server" id="alogin">登入</a></li>
+                        <li><a href="ServerLogin.aspx" runat="server" id="aback">後臺管理</a></li>
 
                     </ul>
                 </div>
@@ -71,7 +73,7 @@
                         <li><a href="#">關於我們</a></li>
                         <li><a href="Category.aspx">商品類別</a></li>
                         <!-- Dropdown Product Manager -->
-<%--                        <li class="dropdown">
+                        <%--                        <li class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">產品管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="ProductView.aspx">產品一覽表</a>
@@ -79,7 +81,7 @@
                             </div>
                         </li>--%>
                         <!-- Dropdown Members Manager -->
-      <%--                  <li class="dropdown" >
+                        <%--                  <li class="dropdown" >
                             <a class="dropdown-toggle" href="#" id="navbardrop1" data-toggle="dropdown">會員管理</a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="MemberList.aspx">會員清單</a>

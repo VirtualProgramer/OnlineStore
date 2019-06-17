@@ -47,7 +47,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="product-item d-flex align-items-center">
                                     <div class="img-fluid"
-                                        style="background-image: url('/img/<%# Eval("ImageFileName") %>'); background-repeat: no-repeat; background-size: cover; width: 152px; height: 106px">
+                                        style="background-image: url('/img/<%# Eval("ImageFileName") %>'); background-repeat: no-repeat; background-size: cover;background-position:center; width: 152px; height: 106px">
                                     </div>
                                     <h6><%# Eval("Name") %></h6>
                                 </div>
@@ -61,7 +61,7 @@
                             <div class="col-md-2 col-12">
                                 <a href='UpdateProduct.aspx?id=<%# Eval("id") %>' class="total" style="margin: 15px 0">Update</a>
                                 <br />
-                                <asp:Button ID="Button2" class="total" Style="margin: 15px 0 0 0; border: 0; padding: 0; background: none;"
+                                <asp:Button ID="Button2" class="total" Style="margin: 15px 0 0 0; border: 0; padding: 0; background: none;cursor:pointer"
                                     CommandName='<%# Eval("id") %>' runat="server" OnClick="Button2_Click"
                                     Text="Delete" OnClientClick="return confirm('delete?')" />
                             </div>
